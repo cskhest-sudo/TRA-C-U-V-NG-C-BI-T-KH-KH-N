@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tra cứu ấp, khu vực đặc biệt khó khăn - Cần Thơ 2026-2030</title>
+<style>
+:root{
+  --bg:#eef3f1; --card:#ffffff; --ink:#16302b; --muted:#5d716c; --line:#d3dfdb;
+  --brand:#0f5c4d; --yes:#b3261e; --yes-bg:#fdecea; --no:#1b6e3c; --no-bg:#e6f4ea;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#10201c;--card:#18302a;--ink:#e8f1ee;--muted:#9bb2ab;--line:#2a463e;--brand:#4fc3a6;
+    --yes:#ffb4ab;--yes-bg:#4a1f1b;--no:#8fe0a8;--no-bg:#1c4128;}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:14px}
+.wrap{max-width:640px;margin:0 auto}
+h1{font-size:1.25rem;margin:4px 0 2px;color:var(--brand)}
+.sub{color:var(--muted);font-size:.85rem;margin:0 0 14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+label{display:block;font-size:.85rem;color:var(--muted);margin:0 0 4px}
+input,select{width:100%;font-size:1.05rem;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+input:focus,select:focus{outline:3px solid color-mix(in srgb,var(--brand) 40%,transparent);border-color:var(--brand)}
+.row{margin-bottom:10px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:8px}
+#out{margin-top:14px}
+.combo{position:relative}
+.combo input{padding-right:44px}
+#xc{position:absolute;right:4px;top:4px;width:40px;height:40px;border:0;background:none;color:var(--muted);font-size:1.5rem;cursor:pointer;display:none}
+#xl{position:absolute;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:var(--card);border:1.5px solid var(--line);border-radius:10px;max-height:260px;overflow-y:auto;z-index:10;display:none;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+#xl li{padding:11px 12px;border-radius:8px;cursor:pointer;font-size:1rem}
+#xl li:hover,#xl li.on{background:var(--no-bg);color:var(--brand)}
+#xl li.empty{color:var(--muted);cursor:default}
+#xl li.empty:hover{background:none;color:var(--muted)}
+.item{background:var(--card);border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.item.yes{border-left-color:var(--yes)} .item.no{border-left-color:var(--no)}
+.name{font-weight:600;font-size:1.05rem}
+.loc{color:var(--muted);font-size:.88rem}
+.tag{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:99px;font-size:.85rem;font-weight:600}
+.yes .tag{background:var(--yes-bg);color:var(--yes)} .no .tag{background:var(--no-bg);color:var(--no)}
+.msg{color:var(--muted);padding:10px 2px}
+.count{font-size:.85rem;color:var(--muted);margin:0 0 8px}
+footer{font-size:.75rem;color:var(--muted);margin-top:16px}
+mark{background:color-mix(in srgb,var(--brand) 25%,transparent);color:inherit;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Tra cứu ấp, khu vực đặc biệt khó khăn</h1>
+  <p class="sub">Thành phố Cần Thơ, giai đoạn 2026 - 2030 (23 xã/phường có ấp, khu vực đặc biệt khó khăn; tổng 141 ấp, khu vực đặc biệt khó khăn)</p>
+
+  <div class="box">
+    <div class="row">
+      <label for="x">Tìm xã / phường (không bắt buộc)</label>
+      <div class="combo">
+        <input id="x" type="text" placeholder="Gõ để tìm xã / phường..." autocomplete="off" role="combobox" aria-expanded="false" aria-controls="xl">
+        <button id="xc" type="button" aria-label="Xóa lọc xã phường">×</button>
+        <ul id="xl" role="listbox"></ul>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom:0">
+      <label for="q">Nhập tên ấp / khu vực</label>
+      <input id="q" type="search" placeholder="Ví dụ: Trà Canh A1, Xóm Tro, Ấp 5" autocomplete="off">
+    </div>
+    <div class="hint">Gõ không dấu cũng được. Nhiều xã có ấp trùng tên (Ấp 5, Châu Thành...), hãy chọn xã để chính xác.</div>
+  </div>
+
+  <div id="out"></div>
+
+  <footer>Nguồn: Phụ lục dự thảo Quyết định của UBND thành phố Cần Thơ về việc phê duyệt danh sách ấp, khu vực vùng đồng bào dân tộc thiểu số; ấp, khu vực đặc biệt khó khăn giai đoạn 2026 - 2030. Trang chỉ gồm các xã, phường có ít nhất một ấp, khu vực đặc biệt khó khăn; ấp không có trong trang = không thuộc diện đặc biệt khó khăn. Chỉ mang tính tra cứu, cần đối chiếu văn bản chính thức khi ban hành.</footer>
+</div>
+
+<script>
+// Định dạng: "Xã|ấp1;ấp2*;..."  (dấu * = ấp/khu vực đặc biệt khó khăn)
+const RAW = `
+Phường Khánh Hòa|Khu vực Cảng Buối;Khu vực Đặng Văn Đông*;Khu vực No Tom*;Khu vực Tân Lập*;Khu vực Trà Teo*;Khu vực Bưng Tum*;Khu vực Nguyễn Út*;Khu vực Trà Niên*
+Phường Vĩnh Châu|Khu vực 1;Khu vực 2;Khu vực Cà Săng*;Khu vực Cà Lăng A Biển*;Khu vực Vĩnh Bình*;Khu vực Đại Bái*;Khu vực Đại Bái A*;Khu vực 3;Khu vực 4;Khu vực Soài Côn;Khu vực Vĩnh An*;Khu vực Sân Chim*;Khu vực Đai Rụng*;Khu vực Ca Lạc*;Khu vực Vĩnh Biên*;Khu vực Lền Buối*
+Phường Vĩnh Phước|Khu vực Wáth Pích;Khu vực Vĩnh Thành;Khu vực Sở Tại A*;Khu vực Xẻo Me*;Khu vực Tân Qui*;Khu vực Biển Trên*;Khu vực Biển Dưới*;Khu vực Trà Vôn*;Khu vực Tham Chu*;Khu vực Tân Nam*;Khu vực Nô Puôl*;Khu vực Điền Giữa*
+Xã Vĩnh Tường|Ấp 5*
+Xã An Ninh|Ấp An Tập;Ấp Xà Lan*;Ấp Chông Nô*;Ấp Phụng Hiệp*;Ấp An Trạch;Ấp Bưng Tróp A*;Ấp Bưng Tróp B;Ấp Châu Thành*;Ấp Giồng Chùa A;Ấp Kinh Mới*
+Xã Kế Sách|Ấp An Ninh 1;Ấp An Ninh 2*;Ấp An Thành*;Ấp An Khương*;Ấp An Phú*;Ấp An Định*;Ấp Bồ Đề*;Ấp Cây Sộp*;Ấp Thành Tân*;Ấp Ba Lăng*
+Xã Lai Hòa|Ấp Lai Hòa*;Ấp Lai Hòa A*;Ấp Prey Chóp*;Ấp Prey Chóp A*;Ấp Prey Chóp B*;Ấp Xẻo Cóc*;Ấp Xung Thum A*;Ấp Xung Thum B*
+Xã Lâm Tân|Ấp Kiết Thắng*;Ấp Kiết Lợi*;Ấp Kiết Lập A*;Ấp Trung Thống*;Ấp Trung Hòa*;Ấp Trung Bình*;Ấp Trung Thành*
+Xã Lịch Hội Thượng|Ấp Giồng Giữa;Ấp Châu Thành;Ấp Hội Trung*;Ấp Phố Dưới*;Ấp Sóc Lèo*;Ấp Nam Chánh
+Xã Liêu Tú|Ấp Bưng Buối*;Ấp Bưng Triết*;Ấp Đại Nôn*;Ấp Đào Viên*;Ấp Lao Vên*;Ấp Tổng Cáng*;Ấp Trà Ông*;Ấp Giồng Chát
+Xã Long Phú|Ấp 4*;Ấp Khoan Tang*;Ấp Tân Lập*;Ấp Nước Mặn 1*;Ấp Nước Mặn 2*;Ấp Kinh Ngang*;Ấp Bưng Long*;Ấp Sóc Mới*;Ấp Bưng Thum*;Ấp Phú Đức*
+Xã Lương Tâm|Ấp 5*;Ấp 6*;Ấp 7*;Ấp 8*;Ấp 9*
+Xã Mỹ Hương|Ấp Bưng Cóc*;Ấp Đai Úi*;Ấp Bắc Dần*;Ấp Sóc Xoài*;Ấp Tá Biên*;Ấp Bét Tôn*;Ấp Trà Lây 1;Ấp Trà Lây 2*;Ấp Bố Liên 3*;Ấp Tà Ân A1*;Ấp Tà Ân A2*
+Xã Phú Lộc|Ấp Giồng Chùa;Ấp Nàng Rền;Ấp Chợ Cũ;Ấp Rẩy Mới 1*;Ấp Tà Điếp C1*;Ấp 1;Ấp Xa Mau 2;Ấp Phú Tân;Ấp Kinh Ngay 1;Ấp Xóm Tro 1*;Ấp Số 8*;Ấp Số 9*;Ấp Bào Cát;Ấp Trương Hiền
+Xã Phú Tâm|Ấp Trà Quýt A;Ấp Trà Quýt;Ấp Xây Cáp*;Ấp Phú Thành*;Ấp Thọ Hòa Đông;Ấp Phú Hữu*;Ấp Phú Bình*;Ấp Giồng Cát
+Xã Tài Văn|Ấp Chắc Tưng*;Ấp Hà Bô*;Ấp Tài Công*;Ấp Prệc Đôn*;Ấp Bưng Chông*;Ấp Bưng Cà Pốt*;Ấp Trà Đức*;Ấp Bưng Sa*;Ấp Bờ Đập*;Ấp Tiếp Nhựt*
+Xã Tân Long|Ấp Tân Thắng*;Ấp A2*;Ấp B1
+Xã Thạnh Thới An|Ấp Hưng Thới*;Ấp Tắc Bướm*;Ấp An Hòa 1*;Ấp An Hòa 2*
+Xã Thới An Hội|Ấp Tập Rèn*;Ấp An Nhơn*
+Xã Thuận Hòa|Ấp Trà Quýt B*;Ấp Trà Canh A1*;Ấp Trà Canh A2*;Ấp Trà Canh B*;Ấp Sa Bâu*;Ấp Phước Lợi*;Ấp Phước An*;Ấp Phước Hòa*;Ấp Phước Thuận*;Ấp Phước Quới*;Ấp Phước Phong*
+Xã Trần Đề|Ấp Bãi Giá*;Ấp Bưng Lức*;Ấp Lâm Dồ*;Ấp Đầu Giồng;Ấp Giồng Chùa;Ấp Nhà Thờ;Ấp Tú Điềm;Ấp Chợ;Ấp Ngan Rô 2
+Xã Vĩnh Hải|Ấp Âu Thọ A;Ấp Âu Thọ B;Ấp Trà Sết*;Ấp Giồng Nổi;Ấp Huỳnh Kỳ*;Ấp Vĩnh Thạnh A;Ấp Vĩnh Thạnh B*
+Xã Vĩnh Lợi|Ấp Vĩnh Thắng*;Ấp Xóm Tro 2*;Ấp Kinh Ngay 2*
+`;
+
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase().replace(/\s+/g," ").trim();
+// bỏ tiền tố "ấp"/"khu vực" khi so khớp
+const core = s => norm(s).replace(/^(ap|khu vuc)\s+/,"");
+
+const DATA = [];
+RAW.trim().split("\n").forEach(line=>{
+  const [xa, aps] = line.split("|");
+  aps.split(";").forEach(a=>{
+    const dbkk = a.endsWith("*");
+    const name = a.replace("*","");
+    DATA.push({xa, name, dbkk, n:core(name), nf:norm(name), nx:norm(xa)});
+  });
+});
+
+const $q = document.getElementById("q"), $x = document.getElementById("x"), $o = document.getElementById("out"),
+      $l = document.getElementById("xl"), $c = document.getElementById("xc");
+const XAS = [...new Set(DATA.map(d=>d.xa))];
+let xaSel = "";   // xã/phường đang được chọn
+
+function showList(){
+  const k = norm($x.value === xaSel ? "" : $x.value);   // vừa chọn xong thì hiện lại đầy đủ
+  const items = XAS.filter(x=>!k || norm(x).includes(k));
+  let h = '<li data-v="">Tất cả xã, phường</li>';
+  h += items.map(x=>'<li data-v="'+x+'"'+(x===xaSel?' class="on"':'')+'>'+x+'</li>').join("");
+  if(!items.length) h += '<li class="empty">Không có xã/phường phù hợp</li>';
+  $l.innerHTML = h; $l.style.display="block"; $x.setAttribute("aria-expanded","true");
+}
+function hideList(){ $l.style.display="none"; $x.setAttribute("aria-expanded","false"); }
+function choose(v){
+  xaSel = v; $x.value = v; $c.style.display = v ? "block" : "none";
+  hideList(); render();
+}
+$x.addEventListener("focus", ()=>{ $x.select(); showList(); });
+$x.addEventListener("input", ()=>{ $c.style.display = $x.value ? "block":"none"; showList(); });
+$l.addEventListener("pointerdown", e=>{
+  const li = e.target.closest("li[data-v]"); if(!li) return;
+  e.preventDefault(); choose(li.dataset.v);
+});
+$c.addEventListener("click", ()=>{ choose(""); $x.focus(); });
+$x.addEventListener("blur", ()=>{ setTimeout(()=>{ hideList(); $x.value = xaSel; $c.style.display = xaSel ? "block":"none"; },120); });
+$x.addEventListener("keydown", e=>{
+  if(e.key==="Enter"){ const f=$l.querySelector("li[data-v]:not([data-v=''])"); if(f && $x.value && $x.value!==xaSel){ e.preventDefault(); choose(f.dataset.v); $x.blur(); } }
+  if(e.key==="Escape"){ $x.blur(); }
+});
+
+const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(){
+  const raw = $q.value, q = norm(raw), qc = core(raw), xa = xaSel;
+  let list = DATA.filter(d=>!xa || d.xa===xa);
+  if(!q){
+    if(!xa){ $o.innerHTML='<p class="msg">Nhập tên ấp để xem kết quả.</p>'; return; }
+  } else {
+    const isNum = /^\d+$/.test(qc);   // gõ "Ấp 1" thì chỉ khớp đúng "Ấp 1", không lẫn "Ấp An Ninh 1"
+    list = list.filter(d=> isNum ? d.n===qc : (d.nf.includes(q) || d.n.includes(qc) || d.nx.includes(q)));
+    // ưu tiên khớp chính xác
+    list.sort((a,b)=>{
+      const ea = (a.n===qc||a.nf===q)?0:1, eb=(b.n===qc||b.nf===q)?0:1;
+      return ea-eb || a.xa.localeCompare(b.xa,"vi") || a.name.localeCompare(b.name,"vi",{numeric:true});
+    });
+  }
+  if(!list.length){
+    $o.innerHTML='<div class="item no"><div class="name">Không tìm thấy "'+esc(raw)+'"</div><div class="loc">Không có ấp/khu vực này trong danh sách các xã, phường có ấp đặc biệt khó khăn, nên không thuộc diện đặc biệt khó khăn. Hãy kiểm tra lại chính tả hoặc bỏ bộ lọc xã.</div></div>';
+    return;
+  }
+  const shown = list.slice(0,100);
+  $o.innerHTML = '<p class="count">'+list.length+' kết quả'+(list.length>100?' (hiển thị 100 đầu, hãy gõ cụ thể hơn)':'')+'</p>' +
+    shown.map(d=>`
+    <div class="item ${d.dbkk?'yes':'no'}">
+      <div class="name">${esc(d.name)}</div>
+      <div class="loc">${esc(d.xa)}</div>
+      <span class="tag">${d.dbkk?'ĐẶC BIỆT KHÓ KHĂN':'Không thuộc diện đặc biệt khó khăn (vùng DTTS)'}</span>
+    </div>`).join("");
+}
+$q.addEventListener("input",render); render();
+</script>
+</body>
+</html>
