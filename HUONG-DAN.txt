@@ -1,0 +1,9 @@
+CÁCH TẠO FILE APK (không cần cài gì trên máy tính)
+1. Đăng ký/đăng nhập github.com (miễn phí).
+2. Bấm dấu + > New repository > đặt tên (ví dụ tra-cuu-ap) > Create repository.
+3. Bấm "uploading an existing file", kéo THẢ TOÀN BỘ nội dung thư mục này
+   (gồm cả thư mục .github, app, và các file .gradle) vào > Commit changes.
+4. Vào tab Actions > chọn "Build APK" > đợi khoảng 3-6 phút đến khi có dấu tích xanh.
+5. Bấm vào lần chạy đó, kéo xuống mục Artifacts, tải "tra-cuu-ap-dbkk-apk" (file .zip), giải nén được app-debug.apk.
+6. Chép app-debug.apk vào điện thoại Android, mở lên và cho phép "Cài đặt từ nguồn không rõ" > Cài đặt.
+Muốn sửa dữ liệu: sửa file app/src/main/assets/index.html rồi commit lại, GitHub sẽ build APK mới.
