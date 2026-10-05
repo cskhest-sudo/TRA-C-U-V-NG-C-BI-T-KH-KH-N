@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a63c9"><title>Bảng chiết tính</title>
+<style>
+:root{--b:#0a63c9;--b2:#12b8c8;--bg:#eef5fc;--c:#fff;--t:#12263a;--m:#5d7388;--l:#dbe6f1;--w:#e8710a;--g:#14914b;--r:#d03a3a;--sh:0 2px 12px rgba(10,60,120,.09)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--t);padding-bottom:92px}
+header{background:linear-gradient(135deg,#0a63c9,#12b8c8);color:#fff;padding:14px 16px 22px;border-radius:0 0 26px 26px;position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 16px rgba(10,99,201,.25)}
+header h1{margin:0;font-size:18px;letter-spacing:.5px}header small{display:block;opacity:.85;font-size:12px;margin-top:2px}
+#lk{border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:7px 12px;font-size:13px;font-weight:600}
+main{padding:0 12px;max-width:560px;margin:-10px auto 0;position:relative}
+.card{background:var(--c);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
+.card>h3,.ct{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:6px}.ct i{font-style:normal;background:#e6f1fd;border-radius:8px;padding:3px 6px}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--m);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:11px 12px;font:inherit;border:1.5px solid var(--l);border-radius:12px;background:#f8fbff;color:var(--t);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--b);background:#fff}input:disabled{opacity:.7;background:#f1f5f9}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.iw{position:relative}.iw input{padding-right:38px}.iw em{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-style:normal;font-size:12px;color:var(--m)}
+.seg{display:flex;background:#e8f0f9;border-radius:14px;padding:4px;gap:4px}.seg button{flex:1;border:0;background:none;padding:10px 4px;border-radius:11px;font:inherit;font-size:13.5px;font-weight:700;color:var(--m)}.seg button.on{background:#fff;color:var(--b);box-shadow:0 1px 6px rgba(10,60,120,.15)}
+.row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-weight:600}
+.sw{position:relative;width:50px;height:28px;flex:none}.sw input{opacity:0;position:absolute;inset:0;width:100%;height:100%;margin:0;z-index:2}.sw i{position:absolute;inset:0;background:#c9d6e3;border-radius:20px;transition:.2s}.sw i:after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}.sw input:checked+i{background:var(--b2)}.sw input:checked+i:after{left:25px}
+.badge{padding:9px 12px;border-radius:12px;font-size:13.5px;margin-top:8px;background:#f1f5f9;color:var(--m)}.red{background:#fde8e8;color:#9b1c1c}.ok{background:#e2f5e9;color:#17653a}.warn{background:#fff3d6;color:#7a5200}
+.res{background:linear-gradient(135deg,#0a4fa8,#0a63c9 55%,#12b8c8);color:#fff;text-align:center;padding:20px 14px}
+.res small{opacity:.88;display:block}.res b{display:block;font-size:38px;margin:6px 0;letter-spacing:-.5px}
+details.card summary{font-weight:700;cursor:pointer;list-style:none;color:var(--b)}details.card summary::-webkit-details-marker{display:none}details.card summary:after{content:" ▾"}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}td,th{padding:6px 3px;border-bottom:1px solid var(--l);text-align:right}td:first-child,th:first-child{text-align:left}th{color:var(--m);font-weight:700}
+button.p{width:100%;padding:13px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--b),#1a7fe0);color:#fff;font:inherit;font-weight:700;margin-top:10px;box-shadow:0 3px 10px rgba(10,99,201,.3)}
+button.p.s{background:#fff;color:var(--t);border:1.5px solid var(--l);box-shadow:none}button.p.d{background:var(--r)}button:disabled{opacity:.55}
+.sec{font-size:12.5px;font-weight:700;color:var(--b);margin:14px 0 2px;text-transform:uppercase;letter-spacing:.4px}
+.ch input{border-color:var(--w);background:#fff6ec}.ed input{border-color:var(--b);background:#eaf3ff}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;display:flex;box-shadow:0 -3px 16px rgba(10,60,120,.12);border-radius:20px 20px 0 0;padding:6px 8px 10px;z-index:6}
+nav button{flex:1;border:0;background:none;padding:6px 0;color:var(--m);font:inherit;font-size:12px;font-weight:700;position:relative}nav button span{display:block;font-size:22px}nav button.on{color:var(--b)}nav button.on span{transform:translateY(-2px)}
+nav b{position:absolute;top:0;left:calc(50% + 6px);background:var(--r);color:#fff;border-radius:10px;min-width:18px;height:18px;font-size:11px;line-height:18px;display:none}nav b.on{display:block}
+.nc{background:#fff;border-radius:16px;padding:13px 14px;margin-bottom:10px;box-shadow:var(--sh);border-left:5px solid var(--b2)}.nc.price{border-left-color:var(--w)}
+.nh{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.nh b{font-size:15px}.tags{display:flex;gap:4px;flex:none}.tg{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:#e6f1fd;color:var(--b)}.tg.r{background:#fde8e8;color:var(--r)}
+.nc small,.sh-h small{color:var(--m)}.nb{margin:8px 0 0;white-space:pre-line}
+.chg{margin-top:8px;background:#fafcff;border:1px solid var(--l);border-radius:12px;padding:4px 10px}.cr{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--l);font-size:13.5px}.cr:last-child{border:0}.cr s{color:var(--m)}.up{color:var(--r)}.dn{color:var(--g)}
+.ns{margin-top:8px;font-size:13px;font-weight:600}.okk{color:var(--g)}.ab{display:flex;gap:8px;margin-top:10px}.ab button{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--l);background:#fff;font:inherit;font-size:13px;font-weight:600}.ab .dl{color:var(--r)}
+.ov{position:fixed;inset:0;background:rgba(10,30,55,.55);display:none;align-items:flex-end;justify-content:center;z-index:20}.ov.on{display:flex}#ack{z-index:30;background:rgba(10,30,55,.72)}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:18px 16px 22px}.sheet h2{margin:0 0 6px;font-size:18px}
+#ack .sheet{padding:0;display:flex;flex-direction:column}.sh-h{background:linear-gradient(135deg,var(--w),#f5a524);color:#fff;padding:14px 16px;border-radius:24px 24px 0 0;display:flex;justify-content:space-between;font-weight:700}.sh-h.info{background:linear-gradient(135deg,var(--b),var(--b2))}.sh-h small{color:#fff;opacity:.9}
+.sh-b{padding:14px 16px;overflow:auto;flex:1}.sh-f{padding:4px 16px 20px;border-top:1px solid var(--l)}.hint{margin:8px 0 0;font-size:12px;color:var(--m);text-align:center}
+#toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);background:#12263a;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;z-index:40;display:none;max-width:90%;text-align:center}
+.al{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--l);font-size:14px}.al span:last-child{color:var(--m)}textarea{resize:vertical}
+</style></head><body>
+<header><div><h1>BẢNG CHIẾT TÍNH</h1><small id="hs">Dự toán lắp đặt đồng hồ · V6</small></div><button id="lk" onclick="lockBtn()">🔒 Quản trị</button></header>
+<main>
+<div id="p1">
+<div class="card"><div class="ct"><i>📍</i>Địa điểm</div>
+<label>Xã, phường</label><input id="xa" list="lx" placeholder="Gõ hoặc chọn…" autocomplete="off"><datalist id="lx"></datalist>
+<div id="vung" class="badge">Thuộc vùng: —</div>
+<label>Ấp / khu vực (xét đặc biệt khó khăn)</label><input id="ap" list="la" placeholder="Gõ hoặc chọn…" autocomplete="off"><datalist id="la"></datalist>
+<div id="dbkk" class="badge">—</div></div>
+<div class="card"><div class="ct"><i>📝</i>Thông tin khảo sát</div>
+<label>Trường hợp</label><input id="kind" type="hidden" value="Lắp mới ĐKT"><div class="seg" id="seg"><button class="on" data-v="Lắp mới ĐKT">Lắp mới ĐKT</button><button data-v="Lắp mới Tê">Lắp mới Tê</button><button data-v="Dời đai">Dời đai</button></div>
+<div class="row"><span>Hộ cận nghèo (giảm 50%)</span><label class="sw" style="margin:0"><input type="checkbox" id="ngheo"><i></i></label></div>
+<div class="g"><div><label>Cấp ĐKT</label><select id="dkt"></select></div><div><label>Cấp ống lắp đặt</label><select id="ong"><option>27</option><option>21</option></select></div></div>
+<div id="tew" hidden><label>Cấp Tê (ghi chú, không ảnh hưởng giá)</label><input id="te" inputmode="numeric"></div>
+<div class="sec">Ống &amp; phụ kiện</div>
+<div class="g"><div><label>Dài ống lắp đặt</label><div class="iw"><input id="len" type="number" inputmode="decimal" min="0" value="0"><em>m</em></div></div><div><label>Số lượng co</label><div class="iw"><input id="co" type="number" inputmode="numeric" min="0" value="0"><em>cái</em></div></div></div>
+<div class="sec">Đào – phá – hoàn trả</div>
+<div class="g"><div><label>Dài phá dỡ bê tông</label><div class="iw"><input id="pha" type="number" inputmode="decimal" min="0" value="0"><em>m</em></div></div><div><label>Dài hoàn trả bê tông</label><div class="iw"><input id="htr" type="number" inputmode="decimal" min="0" value="0"><em>m</em></div></div>
+<div><label>Dài đào ống cấp</label><div class="iw"><input id="dao" type="number" inputmode="decimal" min="0" value="0"><em>m</em></div></div><div><label>Sâu lắp đặt ĐKT</label><div class="iw"><input id="sau" type="number" inputmode="decimal" min="0" value="0"><em>m</em></div></div></div></div>
+<div class="card res"><small id="lbl">Chi phí phải thu</small><b id="thu">—</b><small id="sub"></small></div>
+<details class="card"><summary>Xem chi tiết dự toán</summary><div id="det"></div></details>
+</div>
+<div id="p2" hidden><div class="card"><div class="ct"><i>💲</i>Đơn giá vật tư</div><div id="st" class="badge"></div><div id="pr"></div><div id="adm"></div></div></div>
+<div id="p3" hidden><div class="card"><div class="ct"><i>👤</i>Người dùng</div><label>Họ tên / mã nhân viên (dùng khi xác nhận thông báo)</label><input id="uname" maxlength="80" placeholder="Nhập họ tên…"></div><div id="ncomp"></div><div id="nl"></div></div>
+</main>
+<nav><button id="t1" class="on" onclick="tab(1)"><span>🧮</span>Tính tiền</button><button id="t2" onclick="tab(2)"><span>💲</span>Giá vật tư</button><button id="t3" onclick="tab(3)"><span>🔔</span>Thông báo<b id="bd"></b></button></nav>
+<div class="ov" id="ov"><div class="sheet" id="md"></div></div><div class="ov" id="ack"></div><div id="toast"></div>
+<script>
+const L={dh:[187968,184932,183876],noi:[14240,14010,13930],van:[19936,19614,19502],co:[7974.4,7845.6,7800.8],ong:[7091.52,6976.98,6937.14],d1:[34176,33624,33432],d2:[48416,47634,47362],d3:[56960,56040,55720],d4:[65504,64446,64078],d5:[71200,70050,69650],d6:[93984,92466,91938],d7:[136704,134496,133728],pha:[291027,287977,284027],htr:[395545,387982,385461],dao:[167316,165053,160016],dap:[128352,126616,122752]};
+const DAIL={32:'d1',40:'d1',49:'d1',60:'d1',75:'d1',90:'d2',110:'d3',114:'d3',140:'d4',160:'d5',168:'d5',200:'d6',220:'d6',225:'d6',250:'d7'};
+const DEF={rt27:3900,rn27:3500,van:120000,co27:4300,ong27:11200,val27:24272,rt21:2700,rn21:1900,co21:2700,ong21:8800,val21:18600,keo:11200,cs:3927,htr:1407711,
+dai:{32:55000,40:100000,49:114400,60:126200,75:126200,90:177400,110:165000,114:192200,140:264000,160:279000,168:308100,200:517000,220:418200,225:520000,250:595000}};
+const r3=x=>Math.round(x/1000)*1000;
+function calc(i,P){
+const v={II:0,III:1,IV:2}[i.vung],lb=k=>L[k][v],te=i.kind==='Lắp mới Tê',doi=i.kind==='Dời đai',s=i.ong,R=[];
+const add=(n,sl,dg,lk,ls)=>R.push({n,sl,dg,a:sl*dg,b:lk?(ls===undefined?sl:ls)*lb(lk):0});
+add('Đồng hồ D15',1,0,'dh',doi?0:1);
+add('Nối RT',2,P['rt'+s],'noi');
+add('Nối RN',1,te?0:P['rn'+s],'noi',te?0:1);
+add('Van góc DN15',1,P.van,'van');
+add('Co PVC '+s,i.co,P['co'+s],'co');
+add('Ống PVC D'+s+' (m)',i.len,P['ong'+s],'ong');
+add('Keo dán',1,P.keo);
+add('Cao su non',1,P.cs);
+add('Đai khởi thủy '+i.dkt+'/27',1,te?0:P.dai[i.dkt],DAIL[i.dkt],te?0:1);
+add('Phá dỡ bê tông (m³)',0.03*i.pha,0,'pha');
+add('Hoàn trả bê tông (m³)',0.03*i.htr,P.htr,'htr');
+add('Đào ống (m³)',0.09*i.dao,0,'dao');
+add('Đắp ống (m³)',0.09*i.dao,0,'dap');
+add('Đào đai (m³)',0.15*i.sau,0,'dao');
+add('Đắp đai (m³)',0.15*i.sau,0,'dap');
+add('Val PVC '+s,1,P['val'+s],'co');
+const A=R.reduce((t,r)=>t+r.a,0),B=R.reduce((t,r)=>t+r.b,0),T=A+B,C1=T*5.5/100,C2=T*2/100,GT=C1+C2,TL=(T+GT)*5.5/100,GXD=T+GT+TL,GKS=GXD*5.8/100,VAT=(GXD+GKS)*0.08,G=GXD+GKS+VAT;
+return{R,A,B,T,GT,TL,GXD,GKS,VAT,G,G3:r3(G),thu:r3(i.ngheo?Math.round(G/2):G)};
+}
+
+const RG=[["Phường An Bình", "An Bình", "II"], ["Phường Cái Răng", "Cái Răng", "II"], ["Phường Hưng Phú", "Hưng Phú", "II"], ["Phường Long Tuyền", "Long Tuyền", "II"], ["Phường Ô Môn", "Ô Môn", "II"], ["Phường Tân Lộc", "Tân Lộc", "II"], ["Phường Thốt Nốt", "Thốt Nốt", "II"], ["Phường Thới An Đông", "Thới An Đông", "II"], ["Phường Thới Long", "Thới Long", "II"], ["Phường Thuận Hưng", "Thuận Hưng", "II"], ["Phường Trung Nhứt", "Trung Nhứt", "II"], ["Phường Phước Thới", "Phước Thới", "II"], ["Phường Sóc Trăng", "Sóc Trăng", "II"], ["Phường Phú Lợi", "Phú Lợi", "II"], ["Phường Mỹ Xuyên", "Mỹ Xuyên", "II"], ["Xã Cờ Đỏ", "Cờ Đỏ", "III"], ["Xã Trường Thành", "Trường Thành", "III"], ["Xã Đông Hiệp", "Đông Hiệp", "III"], ["Xã Đông Thuận", "Đông Thuận", "III"], ["Xã Nhơn Ái", "Nhơn Ái", "III"], ["Xã Phong Điền", "Phong Điền", "III"], ["Xã Thạnh An", "Thạnh An", "III"], ["Xã Thạnh Phú", "Thạnh Phú", "III"], ["Xã Thới Hưng", "Thới Hưng", "III"], ["Xã Thới Lai", "Thới Lai", "III"], ["Xã Trung Hưng", "Trung Hưng", "III"], ["Xã Trường Long", "Trường Long", "III"], ["Xã Trường Xuân", "Trường Xuân", "III"], ["Xã Vĩnh Thạnh", "Vĩnh Thạnh", "III"], ["Xã Vĩnh Trinh", "Vĩnh Trinh", "III"], ["Xã Thạnh Quới", "Thạnh Quới", "III"], ["Phường Ngã Năm", "Ngã Năm", "III"], ["Phường Mỹ Quới", "Mỹ Quới", "III"], ["Phường Vĩnh Châu", "Vĩnh Châu", "III"], ["Phường Khánh Hòa", "Khánh Hòa", "III"], ["Phường Vĩnh Phước", "Vĩnh Phước", "III"], ["Xã Tân Long", "Tân Long", "III"], ["Xã Lai Hòa", "Lai Hòa", "III"], ["Xã Vĩnh Hải", "Vĩnh Hải", "III"], ["Xã Cù Lao Dung", "Cù Lao Dung", "IV"], ["Xã An Thạnh", "An Thạnh", "IV"], ["Xã Hồ Đắc Kiện", "Hồ Đắc Kiện", "IV"], ["Xã Thuận Hòa", "Thuận Hòa", "IV"], ["Xã Phú Tâm", "Phú Tâm", "IV"], ["Xã An Ninh", "An Ninh", "IV"], ["Xã An Lạc Thôn", "An Lạc Thôn", "IV"], ["Xã Nhơn Mỹ", "Nhơn Mỹ", "IV"], ["Xã Kế Sách", "Kế Sách", "IV"], ["Xã Thới An Hội", "Thới An Hội", "IV"], ["Xã Đại Hải", "Đại Hải", "IV"], ["Xã Trường Khánh", "Trường Khánh", "IV"], ["Xã Tân Thạnh", "Tân Thạnh", "IV"], ["Xã Long Phú", "Long Phú", "IV"], ["Xã Mỹ Hương", "Mỹ Hương", "IV"], ["Xã Long Hưng", "Long Hưng", "IV"], ["Xã Mỹ Tú", "Mỹ Tú", "IV"], ["Xã Mỹ Phước", "Mỹ Phước", "IV"], ["Xã Gia Hòa", "Gia Hòa", "IV"], ["Xã Nhu Gia", "Nhu Gia", "IV"], ["Xã Ngọc Tố", "Ngọc Tố", "IV"], ["Xã Hòa Tú", "Hòa Tú", "IV"], ["Xã Thạnh Thới An", "Thạnh Thới An", "IV"], ["Xã Trần Đề", "Trần Đề", "IV"], ["Xã Tài Văn", "Tài Văn", "IV"], ["Xã Lịch Hội Thượng", "Lịch Hội Thượng", "IV"], ["Xã Liêu Tú", "Liêu Tú", "IV"], ["Xã Vĩnh Lợi", "Vĩnh Lợi", "IV"], ["Xã Lâm Tân", "Lâm Tân", "IV"], ["Xã Phú Lộc", "Phú Lộc", "IV"], ["Xã Đại Ngãi", "Đại Ngãi", "IV"]],AP={"Phường Cái Răng":[["Khu vực Lê Bình",0]],"Phường Khánh Hòa":[["Khu vực Cảng Buối",0],["Khu vực Đặng Văn Đông",1],["Khu vực No Tom",1],["Khu vực Tân Lập",1],["Khu vực Trà Teo",1],["Khu vực Bưng Tum",1],["Khu vực Nguyễn Út",1],["Khu vực Trà Niên",1]],"Phường Mỹ Xuyên":[["Khu vực 1",0],["Khu vực 2",0],["Khu Vực Tâm Trung",0],["Khu vực Châu Thành",0],["Khu vực Tâm Phước",0],["Khu vực Tâm Lộc",0],["Khu vực Tâm Thọ",0],["Khu vực Đại Thành",0],["Khu vực Đại Ân",0],["Khu vực Đại Nghĩa Thắng",0]],"Phường Ngã Bảy":[["Khu vực 1",0]],"Phường Ngã Năm":[["Khu vực 1",0],["Khu vực Vĩnh Thành",0],["Khu vực Vĩnh Thuận",0],["Khu vực Vĩnh Trung",0],["Khu vực Vĩnh Quới",0],["Khu vực Vĩnh Thanh",0]],"Phường Ninh Kiều":[["Khu vực 1",0],["Khu vực 3",0],["Khu vực 10",0]],"Phường Ô Môn":[["Khu vực Châu Thành",0],["Khu vực Chợ Mới",0],["Khu vực Đồng Hòa",0],["Khu vực Đồng Tiến",0]],"Phường Phú Lợi":[["Khu vực Chợ Trung tâm",0],["Khu vực Cầu Bon",0],["Khu vực Quản Khuôn",0],["Khu vực Tiểu đoàn Tây đô",0],["Khu vực Thuận Hóa",0],["Khu vực Chùa Dơi",0],["Khu vực Mỹ Phương",0],["Khu vực Sung Đinh",0],["Khu vực Phú Lợi",0],["Khu vực Khánh Hưng",0],["Khu vực Đô thị 5A",0]],"Phường Sóc Trăng":[["Khu vực 2",0],["Khu vực 3",0],["Khu vực 4",0],["Khu vực 5",0],["Khu vực 6",0],["Khu vực 7",0],["Khu vực 8",0],["Khu vực 9",0],["Khu vực 10",0],["Khu vực 11",0],["Khu vực 12",0],["Khu vực 13",0],["Khu vực 15",0],["Khu vực 16",0]],"Phường Vị Tân":[["Khu vực 3",0],["Khu vực 10",0]],"Phường Vị Thanh":[["Khu vực 7",0]],"Phường Vĩnh Châu":[["Khu vực 1",0],["Khu vực 2",0],["Khu vực Cà Săng",1],["Khu vực Cà Lăng A Biển",1],["Khu vực Vĩnh Bình",1],["Khu vực Đại Bái",1],["Khu vực Đại Bái A",1],["Khu vực 3",0],["Khu vực 4",0],["Khu vực Soài Côn",0],["Khu vực Vĩnh An",1],["Khu vực Sân Chim",1],["Khu vực Đai Rụng",1],["Khu vực Ca Lạc",1],["Khu vực Vĩnh Biên",1],["Khu vực Lền Buối",1]],"Phường Vĩnh Phước":[["Khu vực Wáth Pích",0],["Khu vực Vĩnh Thành",0],["Khu vực Sở Tại A",1],["Khu vực Xẻo Me",1],["Khu vực Tân Qui",1],["Khu vực Biển Trên",1],["Khu vực Biển Dưới",1],["Khu vực Trà Vôn",1],["Khu vực Tham Chu",1],["Khu vực Tân Nam",1],["Khu vực Nô Puôl",1],["Khu vực Điền Giữa",1]],"Xã Vĩnh Tường":[["Ấp 5",1]],"Xã An Ninh":[["Ấp An Tập",0],["Ấp Xà Lan",1],["Ấp Chông Nô",1],["Ấp Phụng Hiệp",1],["Ấp An Trạch",0],["Ấp Bưng Tróp A",1],["Ấp Bưng Tróp B",0],["Ấp Châu Thành",1],["Ấp Giồng Chùa A",0],["Ấp Kinh Mới",1]],"Xã Cờ Đỏ":[["Ấp Thới Hòa B",0],["Ấp Thới Phước",0],["Ấp Thới Trường",0],["Ấp Thới Xuân",0]],"Xã Cù Lao Dung":[["Ấp Sơn Ton",0],["Ấp Vàm Hồ A",0],["Ấp Võ Thành Văn",0],["Ấp An Nghiệp A",0],["Ấp An Bình",0]],"Xã Đông Hiệp":[["Ấp Đông Thắng",0]],"Xã Đông Phước":[["Ấp Tân An",0],["Ấp Tân Phú",0]],"Xã Gia Hòa":[["Ấp Phú Giao",0],["Ấp Hòa Khanh",0],["Ấp Đào viên",0],["Ấp Ngọn",0],["Ấp Đay Sô",0]],"Xã Hỏa Lựu":[["Ấp Thạnh Thắng",0],["Ấp Thạnh Phú",0],["Ấp Thạnh Trung",0]],"Xã Hồ Đắc Kiện":[["Ấp Xây Đá A",0],["Ấp Xây Đá B",0],["Ấp Thiện Mỹ",0]],"Xã Kế Sách":[["Ấp An Ninh 1",0],["Ấp An Ninh 2",1],["Ấp An Thành",1],["Ấp An Khương",1],["Ấp An Phú",1],["Ấp An Định",1],["Ấp Bồ Đề",1],["Ấp Cây Sộp",1],["Ấp Thành Tân",1],["Ấp Ba Lăng",1]],"Xã Lai Hòa":[["Ấp Lai Hòa",1],["Ấp Lai Hòa A",1],["Ấp Prey Chóp",1],["Ấp Prey Chóp A",1],["Ấp Prey Chóp B",1],["Ấp Xẻo Cóc",1],["Ấp Xung Thum A",1],["Ấp Xung Thum B",1]],"Xã Lâm Tân":[["Ấp Kiết Thắng",1],["Ấp Kiết Lợi",1],["Ấp Kiết Lập A",1],["Ấp Trung Thống",1],["Ấp Trung Hòa",1],["Ấp Trung Bình",1],["Ấp Trung Thành",1]],"Xã Lịch Hội Thượng":[["Ấp Giồng Giữa",0],["Ấp Châu Thành",0],["Ấp Hội Trung",1],["Ấp Phố Dưới",1],["Ấp Sóc Lèo",1],["Ấp Nam Chánh",0]],"Xã Liêu Tú":[["Ấp Bưng Buối",1],["Ấp Bưng Triết",1],["Ấp Đại Nôn",1],["Ấp Đào Viên",1],["Ấp Lao Vên",1],["Ấp Tổng Cáng",1],["Ấp Trà Ông",1],["Ấp Giồng Chát",0]],"Xã Long Phú":[["Ấp 4",1],["Ấp Khoan Tang",1],["Ấp Tân Lập",1],["Ấp Nước Mặn 1",1],["Ấp Nước Mặn 2",1],["Ấp Kinh Ngang",1],["Ấp Bưng Long",1],["Ấp Sóc Mới",1],["Ấp Bưng Thum",1],["Ấp Phú Đức",1]],"Xã Lương Tâm":[["Ấp 5",1],["Ấp 6",1],["Ấp 7",1],["Ấp 8",1],["Ấp 9",1]],"Xã Mỹ Hương":[["Ấp Bưng Cóc",1],["Ấp Đai Úi",1],["Ấp Bắc Dần",1],["Ấp Sóc Xoài",1],["Ấp Tá Biên",1],["Ấp Bét Tôn",1],["Ấp Trà Lây 1",0],["Ấp Trà Lây 2",1],["Ấp Bố Liên 3",1],["Ấp Tà Ân A1",1],["Ấp Tà Ân A2",1]],"Xã Mỹ Tú":[["Ấp Tam Sóc A",0],["Ấp Tam Sóc B",0],["Ấp Tam Sóc C",0],["Ấp Tam Sóc D",0]],"Xã Ngọc Tố":[["Ấp Dù Tho",0],["Ấp Tham Đôn",0],["Ấp Bưng Chụm",0],["Ấp Cần Giờ",0],["Ấp Sô La",0],["Ấp Sông Cái",0]],"Xã Nhơn Mỹ":[["Ấp An Nghiệp",0]],"Xã Nhu Gia":[["Ấp Khu 1",0],["Ấp Khu 2",0],["Ấp Khu 3",0],["Ấp Khu 4",0],["Ấp Cần Đước",0],["Ấp Rạch Sên",0],["Ấp Sóc Bưng",0]],"Xã Phú Lộc":[["Ấp Giồng Chùa",0],["Ấp Nàng Rền",0],["Ấp Chợ Cũ",0],["Ấp Rẩy Mới 1",1],["Ấp Tà Điếp C1",1],["Ấp 1",0],["Ấp Xa Mau 2",0],["Ấp Phú Tân",0],["Ấp Kinh Ngay 1",0],["Ấp Xóm Tro 1",1],["Ấp Số 8",1],["Ấp Số 9",1],["Ấp Bào Cát",0],["Ấp Trương Hiền",0]],"Xã Phú Tâm":[["Ấp Trà Quýt A",0],["Ấp Trà Quýt",0],["Ấp Xây Cáp",1],["Ấp Phú Thành",1],["Ấp Thọ Hòa Đông",0],["Ấp Phú Hữu",1],["Ấp Phú Bình",1],["Ấp Giồng Cát",0]],"Xã Tài Văn":[["Ấp Chắc Tưng",1],["Ấp Hà Bô",1],["Ấp Tài Công",1],["Ấp Prệc Đôn",1],["Ấp Bưng Chông",1],["Ấp Bưng Cà Pốt",1],["Ấp Trà Đức",1],["Ấp Bưng Sa",1],["Ấp Bờ Đập",1],["Ấp Tiếp Nhựt",1]],"Xã Tân Hòa":[["Ấp Bảy Ngàn",0]],"Xã Tân Long":[["Ấp Tân Thắng",1],["Ấp A2",1],["Ấp B1",0]],"Xã Tân Thạnh":[["Ấp Ko Kô",0],["Ấp Tân Lịch",0],["Ấp Tân Qui A",0],["Ấp Tân Qui B",0]],"Xã Thạnh Thới An":[["Ấp Hưng Thới",1],["Ấp Tắc Bướm",1],["Ấp An Hòa 1",1],["Ấp An Hòa 2",1]],"Xã Thới An Hội":[["Ấp Tập Rèn",1],["Ấp An Nhơn",1]],"Xã Thới Lai":[["Ấp Thới Thuận B",0]],"Xã Thuận Hòa":[["Ấp Trà Quýt B",1],["Ấp Trà Canh A1",1],["Ấp Trà Canh A2",1],["Ấp Trà Canh B",1],["Ấp Sa Bâu",1],["Ấp Phước Lợi",1],["Ấp Phước An",1],["Ấp Phước Hòa",1],["Ấp Phước Thuận",1],["Ấp Phước Quới",1],["Ấp Phước Phong",1]],"Xã Trần Đề":[["Ấp Bãi Giá",1],["Ấp Bưng Lức",1],["Ấp Lâm Dồ",1],["Ấp Đầu Giồng",0],["Ấp Giồng Chùa",0],["Ấp Nhà Thờ",0],["Ấp Tú Điềm",0],["Ấp Chợ",0],["Ấp Ngan Rô 2",0]],"Xã Trường Khánh":[["Ấp Trường Thành",0],["Ấp Trường Hưng",0],["Ấp Trường Lộc",0],["Ấp Trường Bình",0],["Ấp Trường An",0]],"Xã Trường Thành":[["Ấp Định Hòa",0]],"Xã Vị Thủy":[["Ấp 2",0]],"Xã Vĩnh Hải":[["Ấp Âu Thọ A",0],["Ấp Âu Thọ B",0],["Ấp Trà Sết",1],["Ấp Giồng Nổi",0],["Ấp Huỳnh Kỳ",1],["Ấp Vĩnh Thạnh A",0],["Ấp Vĩnh Thạnh B",1]],"Xã Vĩnh Lợi":[["Ấp Vĩnh Thắng",1],["Ấp Xóm Tro 2",1],["Ấp Kinh Ngay 2",1]],"Xã Vĩnh Thuận Đông":[["Ấp 10",0],["Ấp 2",0]],"Xã Vĩnh Trinh":[["Ấp Vĩnh Nhuận",0]],"Xã Vĩnh Viễn":[["Ấp 10",0],["Ấp 12",0]],"Xã Xà Phiên":[["Ấp Ngã Bác",0],["Ấp Ngã Cạy",0]]};
+const API_URL="https://script.google.com/macros/s/AKfycbzXz5bUWpx-NKO6wYcV49w60IB_N1jnauQMCzx2s5bvR890FRLx3z19XuQ5jZyL2yU/exec",VER="6.0";
+const $=id=>document.getElementById(id),f=n=>Math.round(n).toLocaleString('vi-VN');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clone=o=>JSON.parse(JSON.stringify(o));
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let P=clone(DEF),D=null,PW=null,SRV={ts:null,src:'giá gốc'},N=ls.get('notices',[]),ACK=ls.get('acked',null),SEEN=ls.get('seen',null),Q=ls.get('ackq',[]);
+let USER=ls.get('user',null);if(!USER||!USER.dev){USER={name:'',dev:'d'+Math.random().toString(36).slice(2,10)+Date.now().toString(36)};ls.set('user',USER)}
+function applyPrices(o){o=o||{};P=Object.assign(clone(DEF),o);P.dai=Object.assign({},DEF.dai,o.dai||{})}
+const c0=ls.get('giaSrv',null);if(c0&&c0.p){applyPrices(c0.p);SRV={ts:c0.ts,src:'bản lưu trên máy'}}
+const cache=(p,ts)=>ls.set('giaSrv',{p:p,ts:ts});
+const post=async b=>(await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b)})).json();
+let tm;function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(tm);tm=setTimeout(()=>t.style.display='none',3200)}
+function openMd(h){$('md').innerHTML=h;$('ov').classList.add('on')}function closeMd(){$('ov').classList.remove('on')}
+$('ov').onclick=e=>{if(e.target==$('ov'))closeMd()};
+function ask(msg,yes,lab){openMd(`<h2>Xác nhận</h2><p>${esc(msg)}</p><button class="p d" id="yy">${lab||'Đồng ý'}</button><button class="p s" onclick="closeMd()">Hủy</button>`);$('yy').onclick=()=>{closeMd();yes()}}
+
+/* ---------- Chặn bản cũ ---------- */
+const vlt=(a,b)=>{a=String(a).split('.');b=String(b).split('.');for(let i=0;i<3;i++){const x=+a[i]||0,y=+b[i]||0;if(x!=y)return x<y}return false};
+function blockApp(min){const ov=$('ack');ov.classList.add('on');ov.innerHTML=`<div class="sheet"><div class="sh-h"><span>⛔ Cần cập nhật ứng dụng</span></div><div class="sh-b"><h2>Phiên bản ${esc(VER)} không còn được hỗ trợ</h2><p class="nb">Vui lòng cài bản mới (từ ${esc(min)} trở lên) do quản trị viên cung cấp rồi mở lại ứng dụng.</p></div></div>`}
+/* ---------- Đồng bộ ---------- */
+async function sync(){
+if(!API_URL)return;
+try{const j=await(await fetch(API_URL+'?v='+VER+'&t='+Date.now())).json();
+ if(j&&j.ok){if(j.min){ls.set('minv',j.min);if(vlt(VER,j.min)){blockApp(j.min);return}}
+ if(!PW){applyPrices(j.prices);SRV={ts:j.updated||null,src:'máy chủ'};cache(j.prices||{},j.updated||null)}
+  N=j.notices||[];ls.set('notices',N);
+  if(ACK===null){const nr=N.find(n=>n.req);ACK=N.filter(n=>!nr||n.id!==nr.id).map(n=>n.id);ls.set('acked',ACK);SEEN=ACK.slice();ls.set('seen',SEEN)}
+  SRV.off=0}}catch(e){SRV.off=1}
+flush();if(!PW){pr();run()}nt();gate()}
+async function flush(){if(!API_URL||!Q.length)return;const rest=[];for(const r of Q.slice()){try{await post(Object.assign({action:'ack'},r))}catch(e){rest.push(r)}}Q=rest;ls.set('ackq',Q)}
+
+/* ---------- Thông báo bắt buộc ---------- */
+const chg=n=>n.changes&&n.changes.length?'<div class="chg">'+n.changes.map(c=>`<div class="cr"><span>${esc(c.n)}</span><span class="${c.v>c.o?'up':'dn'}"><s>${f(c.o)}</s> → <b>${f(c.v)}</b> ${c.v>c.o?'▲':'▼'}</span></div>`).join('')+'</div>':'';
+const bdy=n=>n.body?`<p class="nb">${esc(n.body)}</p>`:'';
+function gate(){const ov=$('ack');if(ov.classList.contains('on'))return;const n=[...N].reverse().find(x=>x.req&&!(ACK||[]).includes(x.id));if(!n)return;
+ov.innerHTML=`<div class="sheet"><div class="sh-h ${n.type}"><span>${n.type=='price'?'💲 Thay đổi đơn giá':'📢 Thông báo từ quản trị'}</span><small>${esc(n.ts)}</small></div><div class="sh-b"><h2>${esc(n.title)}</h2>${bdy(n)}${chg(n)}</div><div class="sh-f"><label>Họ tên / mã nhân viên của bạn</label><input id="aname" value="${esc(USER.name)}" placeholder="Nhập để xác nhận…" maxlength="80"><button class="p" id="aok">✔ Tôi đã đọc và xác nhận</button><p class="hint">Bạn cần bấm xác nhận để tiếp tục sử dụng ứng dụng.</p></div></div>`;
+ov.classList.add('on');
+$('aok').onclick=async()=>{const name=$('aname').value.trim();if(!name){toast('Vui lòng nhập họ tên / mã nhân viên');$('aname').focus();return}
+ $('aok').disabled=true;$('aok').textContent='Đang gửi xác nhận…';USER.name=name;ls.set('user',USER);
+ const rec={nid:n.id,name:name,dev:USER.dev,ver:VER};
+ try{await post(Object.assign({action:'ack'},rec))}catch(e){Q.push(rec);ls.set('ackq',Q);toast('Chưa gửi được, app sẽ tự gửi lại khi có mạng')}
+ ACK.push(n.id);ls.set('acked',ACK);ov.classList.remove('on');ov.innerHTML='';nt();gate()}}
+
+/* ---------- Tab thông báo ---------- */
+function nt(){const un=N.filter(n=>!(SEEN||[]).includes(n.id)).length,b=$('bd');b.textContent=un;b.className=un&&$('p3').hidden?'on':'';
+$('uname').value!==USER.name&&document.activeElement!==$('uname')&&($('uname').value=USER.name);
+$('nl').innerHTML=N.length?N.map(n=>`<div class="nc ${n.type}"><div class="nh"><b>${n.type=='price'?'💲':'📢'} ${esc(n.title)}</b><div class="tags">${n.req?'<i class="tg r">Bắt buộc</i>':''}<i class="tg">${n.type=='price'?'Đơn giá':'Thông báo'}</i></div></div><small>${esc(n.ts)}</small>${bdy(n)}${chg(n)}<div class="ns">${(ACK||[]).includes(n.id)?'<span class="okk">✔ Bạn đã xác nhận</span>':'<span>Thông báo thường</span>'}</div>${PW?`<div class="ab"><button data-a="${n.id}">👥 Ai đã xác nhận</button><button class="dl" data-d="${n.id}">Thu hồi</button></div>`:''}</div>`).join(''):'<div class="card badge">Chưa có thông báo nào.</div>'}
+$('nl').onclick=async e=>{const t=e.target.closest('button');if(!t||!PW)return;
+if(t.dataset.a){openMd('<h2>👥 Người đã xác nhận</h2><p>Đang tải…</p>');try{const j=await post({action:'acks',pw:PW,nid:t.dataset.a});if(!j.ok)throw 0;
+ openMd(`<h2>👥 Người đã xác nhận (${j.list.length})</h2>${j.list.length?j.list.map(x=>`<div class="al"><b>${esc(x.name)}</b><span>${esc(x.at)}</span></div>`).join(''):'<p>Chưa có ai xác nhận.</p>'}<p class="hint">Toàn bộ dữ liệu lưu trong Google Sheet "Bảng chiết tính – Xác nhận thông báo" trên Drive của bạn.</p><button class="p s" onclick="closeMd()">Đóng</button>`)}catch(x){openMd('<h2>Lỗi</h2><p>Không tải được danh sách.</p><button class="p s" onclick="closeMd()">Đóng</button>')}}
+else if(t.dataset.d)ask('Thu hồi (xóa) thông báo này khỏi máy chủ?',async()=>{try{const j=await post({action:'del',pw:PW,nid:t.dataset.d});if(j.ok){toast('Đã thu hồi');sync()}else toast(j.error||'Lỗi')}catch(x){toast('Không kết nối được máy chủ')}},'Thu hồi')};
+$('uname').oninput=()=>{USER.name=$('uname').value.trim();ls.set('user',USER)};
+function tab(n){for(let i=1;i<=3;i++){$('p'+i).hidden=i!=n;$('t'+i).className=i==n?'on':''}
+if(n==1)run();if(n==3){SEEN=N.map(x=>x.id);ls.set('seen',SEEN)}nt();scrollTo(0,0)}
+
+/* ---------- Quản trị ---------- */
+function lockBtn(){if(PW)ask('Thoát chế độ quản trị?',()=>{PW=null;D=null;adm();pr();sync()},'Thoát');else login()}
+function login(){if(!API_URL)return toast('Chưa cấu hình máy chủ giá');openMd('<h2>🔒 Đăng nhập quản trị</h2><label>Mật khẩu</label><input id="pw" type="password" autocomplete="off"><button class="p" id="pgo">Đăng nhập</button><button class="p s" onclick="closeMd()">Hủy</button>');
+$('pgo').onclick=async()=>{const w=$('pw').value;if(!w)return;$('pgo').disabled=true;try{const j=await post({action:'check',pw:w});if(j.ok){PW=w;D=clone(P);closeMd();adm();pr();nt();toast('Đã vào chế độ quản trị')}else{toast('Sai mật khẩu');$('pgo').disabled=false}}catch(e){toast('Không kết nối được máy chủ');$('pgo').disabled=false}}}
+function adm(){$('lk').textContent=PW?'🔓 Đang quản trị':'🔒 Quản trị';
+$('ncomp').innerHTML=PW?'<div class="card"><div class="ct"><i>📢</i>Gửi thông báo mới</div><label>Tiêu đề</label><input id="ntt" maxlength="120"><label>Nội dung</label><textarea id="ntb" rows="4" maxlength="1500"></textarea><div class="row"><span>Bắt buộc người dùng xác nhận</span><label class="sw" style="margin:0"><input type="checkbox" id="ntr" checked><i></i></label></div><button class="p" id="nts">Gửi thông báo</button></div>':'';
+if(PW)$('nts').onclick=async()=>{const t=$('ntt').value.trim(),b=$('ntb').value.trim();if(!t||!b)return toast('Nhập tiêu đề và nội dung');$('nts').disabled=true;
+ try{const j=await post({action:'notice',pw:PW,title:t,body:b,req:$('ntr').checked});if(j.ok){(ACK=ACK||[]).push(j.nid);ls.set('acked',ACK);$('ntt').value='';$('ntb').value='';toast('Đã gửi thông báo');sync()}else toast(j.error||'Lỗi')}catch(e){toast('Không kết nối được máy chủ')}$('nts').disabled=false}}
+const NM={rt27:'Nối RT 27',rn27:'Nối RN 27',co27:'Co PVC 27',ong27:'Ống PVC D27 (m)',val27:'Val PVC 27',rt21:'Nối 21 RT 27',rn21:'Nối 21 RN 27',co21:'Co PVC 21',ong21:'Ống PVC D21 (m)',val21:'Val PVC 21',van:'Van góc DN15',keo:'Keo dán',cs:'Cao su non',htr:'Hoàn trả bê tông (m³)'};
+function diffs(){const c=[];for(const k in NM)if(D[k]!=P[k])c.push({n:NM[k],o:P[k],v:D[k]});for(const k in DEF.dai)if(D.dai[k]!=P.dai[k])c.push({n:'Đai khởi thủy '+k+'/27',o:P.dai[k],v:D.dai[k]});return c}
+function pr(){const ed=!!PW&&!!D,S=ed?D:P,dis=ed?'':'disabled';
+$('st').className='badge '+(ed?'warn':'');$('st').innerHTML=!API_URL?'Chưa kết nối máy chủ giá – đang dùng giá gốc.':(ed?'✏️ Chế độ quản trị – sửa giá xong bấm <b>Lưu &amp; thông báo</b>.':'🔒 Chỉ quản trị viên được sửa giá.<br>Nguồn: '+SRV.src+(SRV.ts?' · cập nhật '+SRV.ts:'')+(SRV.off?' · <b>đang không có mạng</b>':''));
+const fld=(lab,at,v,d)=>`<div class="${v!=d?'ch':''}"><label>${lab}</label><div class="iw"><input ${at} type="number" inputmode="decimal" value="${v}" ${dis}><em>đ</em></div></div>`;
+let h='<div class="sec">Vật tư chính</div><div class="g">';for(const k in NM)h+=fld(NM[k],`data-k="${k}"`,S[k],DEF[k]);
+h+='</div><div class="sec">Đai khởi thủy</div><div class="g">';for(const k in DEF.dai)h+=fld('Đai '+k+'/27',`data-d="${k}"`,S.dai[k],DEF.dai[k]);$('pr').innerHTML=h+'</div>';
+if(ed)$('pr').querySelectorAll('input').forEach(i=>i.oninput=()=>{const v=parseFloat(i.value)||0,k=i.dataset.k,d=i.dataset.d,df=k?DEF[k]:DEF.dai[d];if(k)D[k]=v;else D.dai[d]=v;i.parentNode.parentNode.className=v!=df?'ch':''});
+$('adm').innerHTML=ed?'<button class="p" id="bsave">💾 Lưu &amp; thông báo</button><button class="p s" id="brs">Đặt lại giá gốc (chưa lưu)</button>':'<button class="p s" id="bin">🔒 Đăng nhập quản trị để sửa giá</button>';
+if(ed){$('bsave').onclick=saveFlow;$('brs').onclick=()=>ask('Đặt toàn bộ giá về giá gốc (chưa lưu lên máy chủ)?',()=>{D=clone(DEF);pr()})}else $('bin').onclick=login}
+function saveFlow(){const c=diffs();if(!c.length)return toast('Chưa có thay đổi nào so với giá hiện tại');
+openMd(`<h2>💾 Lưu giá mới</h2><p>${c.length} mục thay đổi:</p>${chg({changes:c})}<div class="row"><span>Gửi thông báo cho người dùng</span><label class="sw" style="margin:0"><input type="checkbox" id="sn" checked><i></i></label></div><div id="snb"><label>Tiêu đề</label><input id="st1" value="Điều chỉnh đơn giá vật tư" maxlength="120"><label>Ghi chú (không bắt buộc)</label><textarea id="sbd" rows="3" maxlength="1500" placeholder="VD: Áp dụng từ ngày …"></textarea><div class="row"><span>Bắt buộc bấm xác nhận</span><label class="sw" style="margin:0"><input type="checkbox" id="sr" checked><i></i></label></div></div><button class="p" id="sgo">Lưu &amp; gửi</button><button class="p s" onclick="closeMd()">Hủy</button>`);
+$('sn').onchange=()=>$('snb').hidden=!$('sn').checked;
+$('sgo').onclick=async()=>{$('sgo').disabled=true;const notice=$('sn').checked?{title:$('st1').value.trim(),body:$('sbd').value.trim(),req:$('sr').checked,changes:c}:null;
+ try{const j=await post({action:'save',pw:PW,prices:D,notice:notice});if(j.ok){applyPrices(D);SRV={ts:j.updated,src:'máy chủ'};cache(D,j.updated);if(j.nid){(ACK=ACK||[]).push(j.nid);ls.set('acked',ACK)}D=clone(P);closeMd();toast(notice?'Đã lưu và gửi thông báo':'Đã lưu giá');pr();run();sync()}else{toast(j.error||'Lỗi khi lưu');$('sgo').disabled=false}}catch(e){toast('Không kết nối được máy chủ, chưa lưu');$('sgo').disabled=false}}}
+
+/* ---------- Tính tiền ---------- */
+const norm=s=>s.toLowerCase().trim().replace(/\s+/g,' ').replace(/^(ấp|khu vực) /,'');
+$('lx').innerHTML=RG.map(r=>`<option value="${r[0]}">`).join('');
+$('dkt').innerHTML=Object.keys(DEF.dai).map(k=>`<option ${k==90?'selected':''}>${k}</option>`).join('');
+function xa(){const v=$('xa').value.trim().toLowerCase();return RG.find(r=>r[0].toLowerCase()==v||r[1].toLowerCase()==v)}
+$('seg').onclick=e=>{const b=e.target.closest('button');if(!b)return;$('kind').value=b.dataset.v;[...$('seg').children].forEach(x=>x.className=x==b?'on':'');run()};
+function run(){
+const x=xa(),b=$('dbkk'),vb=$('vung');$('tew').hidden=$('kind').value!='Lắp mới Tê';
+$('la').innerHTML=x&&AP[x[0]]?AP[x[0]].map(a=>`<option value="${a[0]}">`).join(''):'';
+if(!x){vb.textContent='Thuộc vùng: — (chọn xã, phường trong danh sách)';vb.className='badge warn';b.textContent='—';b.className='badge';$('thu').textContent='—';$('sub').textContent='';$('det').innerHTML='';return}
+vb.textContent='Thuộc vùng: '+x[2];vb.className='badge ok';
+const l=AP[x[0]],a=norm($('ap').value);
+if(!$('ap').value.trim()){b.textContent='Chưa nhập ấp';b.className='badge'}
+else if(!l){b.textContent='Không thuộc vùng đặc biệt khó khăn (xã, phường này không có ấp trong danh sách)';b.className='badge'}
+else{const h=l.find(e=>norm(e[0])==a);
+ if(!h){b.textContent='Không có trong danh sách → không thuộc vùng đặc biệt khó khăn (kiểm tra lại tên ấp)';b.className='badge warn'}
+ else if(h[1]){b.textContent='✔ '+h[0]+': THUỘC vùng đặc biệt khó khăn';b.className='badge red'}
+ else{b.textContent=h[0]+': thuộc vùng đồng bào DTTS, KHÔNG thuộc đặc biệt khó khăn';b.className='badge ok'}}
+const n=id=>Math.max(0,parseFloat($(id).value)||0);
+const r=calc({vung:x[2],kind:$('kind').value,ngheo:$('ngheo').checked,dkt:$('dkt').value,ong:$('ong').value,len:n('len'),co:n('co'),pha:n('pha'),htr:n('htr'),dao:n('dao'),sau:n('sau')},P);
+$('thu').textContent=f(r.thu)+' đ';$('lbl').textContent='Chi phí phải thu – '+($('ngheo').checked?'Hộ cận nghèo (50%)':'Hộ thông thường');
+$('sub').textContent='Tổng dự toán làm tròn: '+f(r.G3)+' đ';
+$('det').innerHTML='<table><tr><th>Hạng mục</th><th>SL</th><th>Vật tư</th><th>Nhân công</th></tr>'+r.R.map(e=>`<tr><td>${e.n}</td><td>${+e.sl.toFixed(3)}</td><td>${f(e.a)}</td><td>${f(e.b)}</td></tr>`).join('')+
+`<tr><th>A, B</th><th></th><th>${f(r.A)}</th><th>${f(r.B)}</th></tr></table><table><tr><td>Chi phí trực tiếp (A+B)</td><td>${f(r.T)}</td></tr><tr><td>Chi phí gián tiếp (7,5%)</td><td>${f(r.GT)}</td></tr><tr><td>Thu nhập chịu thuế tính trước</td><td>${f(r.TL)}</td></tr><tr><td>Chi phí khảo sát (5,8%)</td><td>${f(r.GKS)}</td></tr><tr><td>Thuế GTGT (8%)</td><td>${f(r.VAT)}</td></tr><tr><th>Tổng dự toán</th><th>${f(r.G)}</th></tr></table>`}
+document.querySelectorAll('#p1 input,#p1 select').forEach(e=>{e.oninput=run;e.onchange=run});
+{const mv=ls.get('minv',null);if(mv&&vlt(VER,mv))blockApp(mv)}
+adm();pr();run();nt();sync();gate();
+addEventListener('online',sync);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});setInterval(()=>{if(!document.hidden)sync()},60000);
+</script></body></html>
